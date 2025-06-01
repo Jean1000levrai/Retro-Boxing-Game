@@ -1,4 +1,8 @@
 import * as Phaser from "https://cdn.jsdelivr.net/npm/phaser@3.60.0/dist/phaser.esm.js";
+import {
+    Boxer
+} from './player.js'
+
 
 const config = {
     type: Phaser.AUTO,
@@ -28,15 +32,12 @@ function preload(){
 function create(){
     
     // boxer1
-    this.textures.get('boxer').setFilter(Phaser.Textures.FilterMode.NEAREST);
-    let boxer1 = this.add.image(250, 300, 'boxer');
-    boxer1.setScale(15);
+    const boxer1 = new Boxer(this, "ali", 'boxer',[250, 300]);
 
     // boxer2
-    this.textures.get('boxer').setFilter(Phaser.Textures.FilterMode.NEAREST);
-    let boxer2 = this.add.image(550, 300, 'boxer');
-    boxer2.setScale(15);
-    boxer2.flipX=true;
+    const boxer2 = new Boxer(this, "ali", 'boxer', [550, 300], true);
+
+    boxer1.changeState('boxer_jab')
 }
 
 function update(){
